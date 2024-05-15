@@ -10,16 +10,13 @@ Required packages/modules:
     -numpy
     -matplotlib
     -pandas
-    -fit_lines_and_statistics (our created module for fit lines)
+    -fit_lines_and_statistics (our created module for fit lines, it should be in the same directory as this script)
     numpy, matplotlib, and pandas should be installed with Spyder IDE installation
-    
-Optional packages:
-    -scipy (for linear regression functions)
+
 """
 
 
 import numpy as np
-import matplotlib.pyplot as plt
 import pandas as pd
 import fit_lines_and_statistics
 
@@ -52,27 +49,26 @@ outputs:
     - intercept of the power-law fit line (if linreg_flag is True).
 """
 
-# Identify outliers in densities and speeds
-outliers_densities = fit_lines_and_statistics.findoutliers(densities)
-outliers_speeds = fit_lines_and_statistics.findoutliers(speeds)
 
 # plot polynomial fit
-pred_poly, r_squared_poly = fit_lines_and_statistics.PolyRegres(densities, speeds, 2, plot_flag=True)
+pred_poly, r_squared_poly, equation_poly = fit_lines_and_statistics.PolyRegress(densities, speeds, 2, plot_flag=True)
 
 # plot linear fit
-linear_fit_fn, r_squared_linear = fit_lines_and_statistics.linearfit(densities, speeds, linreg_flag=False, plot_flag=True)
+linear_fit_fn, r_squared_linear, equation_linear = fit_lines_and_statistics.linearfit(densities, speeds, plot_flag=True)
 
 # plot exponential fit
-exp_fit_fn, r_squared_exp = fit_lines_and_statistics.exponentialfit(densities, speeds, plot_flag=True)
+exp_fit_fn, r_squared_exp, equation_exp = fit_lines_and_statistics.exponentialfit(densities, speeds, plot_flag=True)
 
 # plot logarithmic fit
-log_fit_fn, r_squared_log = fit_lines_and_statistics.logfit(densities, speeds, linreg_flag=False, plot_flag=True)
+log_fit_fn, r_squared_log, equation_log = fit_lines_and_statistics.logfit(densities, speeds, plot_flag=True)
 
 # plot power fit
-power_fit_fn, r_squared_power = fit_lines_and_statistics.powfit(densities, speeds, linreg_flag=False, plot_flag=True)
+power_fit_fn, r_squared_power, equation_power = fit_lines_and_statistics.powfit(densities, speeds, plot_flag=True)
 
 # create data frame for fit lines statistics
-fits_stats = fit_lines_and_statistics.create_dataframe(pred_poly, r_squared_poly, linear_fit_fn, r_squared_linear, exp_fit_fn, r_squared_exp, log_fit_fn, r_squared_log, power_fit_fn, r_squared_power, linreg_flag=False)
+fits_stats = fit_lines_and_statistics.create_dataframe(pred_poly,  linear_fit_fn,  exp_fit_fn, log_fit_fn, power_fit_fn,
+                                                     r_squared_poly, r_squared_linear, r_squared_exp, r_squared_log, r_squared_power,
+                                                     equation_linear, equation_log, equation_power, equation_exp, equation_poly)
 
 pd.set_option('display.max_columns', None)
 
@@ -80,9 +76,3 @@ fit_lines_and_statistics.fit_portion(densities, speeds, 2)
 # Print the DataFrame
 print(fits_stats)
 
-plt.title('Speed vs Density')
-plt.xlabel('Density (vehicles/mi^2)')
-plt.ylabel('Speed (mi/h)')
-plt.legend()
-plt.grid(True)
-plt.show()
