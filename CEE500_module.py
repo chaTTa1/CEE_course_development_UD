@@ -14,6 +14,7 @@ Required packages/modules:
     numpy, matplotlib, and pandas should be installed with Spyder IDE installation
 """
 
+
 # Importing necessary packages
 import numpy as np
 import matplotlib.pyplot as plt
