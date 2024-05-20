@@ -51,3 +51,8 @@ def bisection_method(func, lower_bound, upper_bound, tolerance, max_iterations):
 
     print("Max iterations reached. Approximate solution or divergence.")
     return None, 0
+
+
+if __name__ == "__main__":
+
+    print("You are running this module directly.")
