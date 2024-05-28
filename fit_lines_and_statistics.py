@@ -344,4 +344,5 @@ def fit_portion(x, y, highest_order):
 
 # Main function to test the functions (aka if you run this script it will run this function)
 if __name__ == '__main__':
-    print("This is the main function, it will not run unless you run this script directly. ")
+    print("You are running this module directly.")
+    print("This module is intended to be imported into another program.")

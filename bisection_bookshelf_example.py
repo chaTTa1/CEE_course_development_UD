@@ -21,5 +21,5 @@ Lboundary = 0
 Rboundary = 29
 
 # find the root using the bisection method
-root, sig_figs = BM.bisection_method(bookshelf_function, Lboundary, Rboundary, tolerance=0.5e-2, max_iterations=1000)
+root, sig_figs = BM.bisection_method(bookshelf_function, Lboundary, Rboundary, tolerance=1e-4, max_iterations=10)
 print(f"Found root: {root} with {sig_figs} significant figures.")
